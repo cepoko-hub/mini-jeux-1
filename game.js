@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
 
+    const leftButton = document.getElementById('left-button');
+    const rightButton = document.getElementById('right-button');
+
+
     const collectFuelSound = new Audio('sound/collect-fuel.mp3');   
 
     const mainMusic = new Audio('sound/main-music.mp3');
@@ -53,6 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fuelCanImage = new Image();
     fuelCanImage.src = 'img/fuel_can.png';
+
+    canvas.addEventListener('click', startGame);
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault(); 
+        startGame();
+    });
 
     function initRoad() {
         roadLines = [];
@@ -168,6 +178,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function startGame() {
+        if (!isPlaying) {
+            isPlaying = true;
+    
+            // Jouer la musique de fond (si elle existe)
+            if (mainMusic) {
+                mainMusic.play();
+            }
+    
+            // Réinitialiser les variables de jeu
+            score = 0;
+            fuel = 50;
+            fuelCans = [];
+            gameOverElement.style.display = 'none';
+            highScoreElement.textContent = `Plus long voyage : ${highScore} km`;
+    
+            // Initialiser la route et démarrer la boucle de jeu
+            initRoad();
+            gameLoop();
+        }
+    }
+    
+
     function stopGame(reason) {
         isPlaying = false;
     
@@ -200,6 +233,36 @@ document.addEventListener('DOMContentLoaded', () => {
     
         requestAnimationFrame(gameLoop);
     }
+
+    // Activer la direction gauche
+    leftButton.addEventListener('mousedown', () => (keys['ArrowLeft'] = true));
+    leftButton.addEventListener('mouseup', () => (keys['ArrowLeft'] = false));
+    leftButton.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Empêche les comportements par défaut
+        keys['ArrowLeft'] = true;
+    });
+    leftButton.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keys['ArrowLeft'] = false;
+    });
+
+    // Activer la direction droite
+    rightButton.addEventListener('mousedown', () => (keys['ArrowRight'] = true));
+    rightButton.addEventListener('mouseup', () => (keys['ArrowRight'] = false));
+    rightButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keys['ArrowRight'] = true;
+    });
+    rightButton.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keys['ArrowRight'] = false;
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            startGame();
+        }
+    });
     
 
     document.addEventListener('keydown', e => {

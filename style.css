@@ -64,3 +64,31 @@ canvas {
     font-weight: bold;
     text-shadow: 2px 2px 4px black;
 }
+
+#touch-controls {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#touch-controls button {
+    width: 60px;
+    height: 60px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+#touch-controls button:active {
+    background-color: #777;
+}
