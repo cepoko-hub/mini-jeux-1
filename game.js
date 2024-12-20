@@ -182,19 +182,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isPlaying) {
             isPlaying = true;
     
-            // Jouer la musique de fond (si elle existe)
             if (mainMusic) {
                 mainMusic.play();
             }
     
-            // Réinitialiser les variables de jeu
             score = 0;
             fuel = 50;
             fuelCans = [];
             gameOverElement.style.display = 'none';
             highScoreElement.textContent = `Plus long voyage : ${highScore} km`;
     
-            // Initialiser la route et démarrer la boucle de jeu
             initRoad();
             gameLoop();
         }
@@ -234,11 +231,10 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(gameLoop);
     }
 
-    // Activer la direction gauche
     leftButton.addEventListener('mousedown', () => (keys['ArrowLeft'] = true));
     leftButton.addEventListener('mouseup', () => (keys['ArrowLeft'] = false));
     leftButton.addEventListener('touchstart', (e) => {
-        e.preventDefault(); // Empêche les comportements par défaut
+        e.preventDefault(); 
         keys['ArrowLeft'] = true;
     });
     leftButton.addEventListener('touchend', (e) => {
@@ -246,7 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
         keys['ArrowLeft'] = false;
     });
 
-    // Activer la direction droite
     rightButton.addEventListener('mousedown', () => (keys['ArrowRight'] = true));
     rightButton.addEventListener('mouseup', () => (keys['ArrowRight'] = false));
     rightButton.addEventListener('touchstart', (e) => {
