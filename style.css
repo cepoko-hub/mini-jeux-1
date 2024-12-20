@@ -92,3 +92,46 @@ canvas {
 #touch-controls button:active {
     background-color: #777;
 }
+
+@media (max-width: 768px) {
+    #fuel {
+        position: absolute;
+        top: 10px; 
+        left: 10px; 
+        font-size: 16px; 
+    }
+
+    #score {
+        position: absolute;
+        top: 10px; 
+        right: 10px; 
+        font-size: 16px;
+    }
+
+    #highscore {
+        position: absolute;
+        top: 40px; 
+        right: 10px;
+        font-size: 14px; 
+    }
+
+    #touch-controls {
+        position: absolute;
+        bottom: 20px; 
+        width: 100%;
+        display: flex;
+        justify-content: space-around; 
+    }
+
+    #touch-controls button {
+        width: 50px; 
+        height: 50px;
+        font-size: 18px; 
+    }
+
+    canvas {
+        margin: 0;
+        width: 100%; 
+        height: auto; 
+    }
+}

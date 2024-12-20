@@ -288,5 +288,42 @@ document.addEventListener('DOMContentLoaded', () => {
             gameLoop();
         }
     });
+
+    function adjustForMobile() {
+        const isMobile = window.innerWidth < 768; 
+        const fuelElement = document.getElementById('fuel');
+        const scoreElement = document.getElementById('score');
+        const highScoreElement = document.getElementById('highscore');
+    
+        if (isMobile) {
+            fuelElement.style.fontSize = '16px';
+            scoreElement.style.fontSize = '16px';
+            highScoreElement.style.fontSize = '14px';
+        } else {
+            fuelElement.style.fontSize = '20px';
+            scoreElement.style.fontSize = '20px';
+            highScoreElement.style.fontSize = '18px';
+        }
+    }
+    
+    adjustForMobile();
+    
+    window.addEventListener('resize', adjustForMobile);
+
+    function adjustTouchControls() {
+        const touchControls = document.getElementById('touch-controls');
+        const isMobile = window.innerWidth < 768;
+    
+        if (isMobile) {
+            touchControls.style.bottom = '10px'; 
+        } else {
+            touchControls.style.bottom = '20px'; 
+        }
+    }
+    
+    adjustTouchControls();
+    
+    window.addEventListener('resize', adjustTouchControls);
+    
     
 });
